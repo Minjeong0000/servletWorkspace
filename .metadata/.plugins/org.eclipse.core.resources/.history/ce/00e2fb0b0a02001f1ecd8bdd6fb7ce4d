@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="prj02">
+        <property name="context-root" value="prj02"/>
+        <property name="java-output-path" value="/prj02/src/main/webapp/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>
