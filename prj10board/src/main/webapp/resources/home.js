@@ -1,1 +1,1 @@
-console.log("dfsfdsfa");
+console.log("d아무거나");

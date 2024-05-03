@@ -10,43 +10,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/home")
+@WebServlet("/home")
 public class HomeController extends HttpServlet {
-	@Override
+	
+	 @Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// 데이터꺼내기
-		String name = req.getParameter("name");
-
-		//다양한 작업
-		long time = System.currentTimeMillis();
-		Date date = new Date();
-		
-		
-		
-		
-		
-		// 문자열 내보내기
-		resp.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = resp.getWriter();
-		out.write("<h1>홈페이지</h1>");
-		if (name != null) {
-			out.write("<h1>" + name + "님 환영합니다</h1>");
-
-		} else {
-			out.write("<h1>게스트님 환영합니다.</h1>");
-		}
-		out.write("<button onclick = 'alert(\"안녕하세요\")'>안녕</button>");
-		
-		out.write("<hr>");
-		
-		out.write("<h3>");
-		out.write("time :"+time);
-		out.write("<h3>");
-		
-		out.write("<h3>");
-		out.write("date :"+date);
-		out.write("<h3>");
+		//데이터 꺼내기
+		 String name = req.getParameter("name");
+		 
+	//복잡한 작업
+	long time = System.currentTimeMillis();
+	Date date = new Date();
+		 
+    //문자열 내보내기
+	resp.setContentType("text/html; charset=UTF-8");
+	PrintWriter out = resp.getWriter();
+	out.write("<h1>홈페이지</h1>");
+	if(name != null) {
+		out.write("<h1>"+name+"님환영합니다.</h1>");
+	}else {
+		out.write("<h1>게스트 님 환영합니다.</h1>");
+	}
+	out.write("<button onclick='alert(\"안녕하세요\");'>안녕</button>");
+	
+	out.write("<hr>");
+	
+	out.write("<h3>");
+	out.write("time : " + time);
+	out.write("</h3>");
+	
+	out.write("<h3>");
+	out.write("date : " + date);
+	out.write("</h3>");
+	
+	
 	}
 
 }

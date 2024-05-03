@@ -1,5 +1,0 @@
-INDEX VERSION 1.134
-D:\dev\servletWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1779545601.index
-\prj03\src\main\java
-D:\dev\servletWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3831648936.index
-\prj03\src\main\java

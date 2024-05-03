@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
+
 <body>
-	<h1>jsp로 만든 홈페이지</h1>
+
+<h1>JSP로 만든 홈페이지~~~</h1>
+
 </body>
 </html>

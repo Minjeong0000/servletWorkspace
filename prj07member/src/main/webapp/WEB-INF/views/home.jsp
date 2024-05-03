@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>홈페이지</title>
+<title>Insert title here</title>
 </head>
+
 <body>
-<h1>홈 ㅋㅋㅋ</h1>
-<hr>
-<a href ="http://localhost:8888/app07/member/join">회원가입</a>
-<br>
-<a href ="http://localhost:8888/app07/member/login">로그인</a>
+
+<h1>한재두입니다.</h1>
+	<hr>
+	
+	<a href="http://127.0.0.1:8888/app07/member/login">회원가입</a>
+	<br>
+	<a href="http://127.0.0.1:8888/app07/member/join">로그인</a>
+
 </body>
 </html>

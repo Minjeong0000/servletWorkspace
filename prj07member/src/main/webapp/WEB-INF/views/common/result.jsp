@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%
 		String x = (String)request.getAttribute("msg");
 	%>
-	<h1><%=x %>로그인 성공!!</h1>
+	<h1><%= x %></h1>
+
 </body>
 </html>

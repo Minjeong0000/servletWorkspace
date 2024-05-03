@@ -1,9 +1,0 @@
-package com.kh.member.vo;
-
-public class MemberVo {
-
-	private String MemberId;
-	private String MemberPwd;
-	
-	
-}

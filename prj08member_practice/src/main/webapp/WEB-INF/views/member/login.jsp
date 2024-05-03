@@ -8,18 +8,9 @@
 </head>
 <body>
 
-<h1>로그인</h1>
-<hr>
-<a href="http://127.0.0.1:8888/app00/home">홈페이지</a>
-<hr>
-<%-- form action="주소~~">
 
-<input type ="text" name = "memberId" placeholder = "아이디 입력"><br>
-<input type ="password" name ="memberPwd" placeholder ="비밀번호입력"><br>
-<input type ="submit" value = "로그인">
+<h1>여기는 로그인</h1>
 
-</form>--%>
-
-
+<a href="http://127.0.0.1:8888/app08/home">홈페이지로 돌아가기</a>
 </body>
 </html>

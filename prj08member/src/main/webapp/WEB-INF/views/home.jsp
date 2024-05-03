@@ -7,9 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>홈페이지8</h1>
+
+<H1> 안녕하세요 4월 26일입니다.</H1>
+
 	<hr>
-	<a href="http://127.0.0.1:8888/app08/member/join">회원가입</a>
-	<a href="http://127.0.0.1:8888/app08/member/login">로그인</a>
+	
+	<a href="http://127.0.0.1:8888/app08/member/login"> 로그인</a>
+	<a href="http://127.0.0.1:8888/app08/member/join"> 회원가입</a>
+
+
+
 </body>
 </html>

@@ -13,8 +13,11 @@ public class MemberJoinController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-	req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
+		
+		
+		//문자열 내보내기
+		req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
+	
 	}
 	
 }

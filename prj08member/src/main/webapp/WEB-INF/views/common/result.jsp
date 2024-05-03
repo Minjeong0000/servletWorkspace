@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,16 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%--
-	out.write("<h1>"+request.getAttribute("x")+"</h1>");	
-	--%>
-
-<% String x = (String)request.getAttribute("x"); %>
+		
+			out.write("<h1>"+request.getAttribute("x")+"</h1>");	
 	
-	<h1>
-<%=x %>
-	</h1>
-
+	--%>
+	
+	<%	String x = (String)request.getAttribute("x"); %>
+	
+	<h1><%= x %></h1>
 
 </body>
 </html>

@@ -6,10 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
 <body>
-	<%String x = (String)request.getAttribute("x"); %>
-	<h1>
-	<%=x %>
-	</h1>
+
+	<% String x = (String)request.getAttribute("x"); %>
+	
+	<h1> <%= x %></h1>
+	
 </body>
 </html>
