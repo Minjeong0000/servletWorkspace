@@ -50,6 +50,20 @@ public class BoardService {
 		return voList;
 	}
 
+
+	public BoardVo getBoardByNo(String no) throws Exception {
+		//비즈니스로직
+		
+		//dao호출
+		Connection conn = getConnection();
+		BoardVo vo = dao.getBoardByNo(conn,no);
+		close(conn);
+		
+		return vo;
+	
+	
+	}
+
 	
 
 	
