@@ -1,6 +1,7 @@
 package com.kh.app.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.app.board.service.BoardService;
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.member.vo.MemberVo;
 
 @WebServlet("/board/insert")
@@ -19,7 +21,20 @@ public class BoardInsertController extends HttpServlet{
 	//작성화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/board/insert.jsp").forward(req, resp);
+
+		try {
+			BoardService bs = new BoardService();
+			List<CategoryVo> categoryVoList = bs.getCategoryVoList();
+			req.setAttribute("categoryVoList", categoryVoList);
+			req.getRequestDispatcher("/WEB-INF/views/board/insert.jsp").forward(req, resp);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/board/insert.jsp").forward(req, resp);
+			
+		}
+		
 	
 	}
 	

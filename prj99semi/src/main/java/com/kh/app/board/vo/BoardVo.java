@@ -10,14 +10,18 @@ public class BoardVo {
 	private String hit;
 	private String createDate;
 	private String delYn;
+	private String categoryName;
+	private String nick;
 	
 	
 	public BoardVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public BoardVo(String no, String title, String content, String categoryNo, String writerNo, String hit,
-			String createDate, String delYn) {
+			String createDate, String delYn, String categoryName, String nick) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -27,11 +31,15 @@ public class BoardVo {
 		this.hit = hit;
 		this.createDate = createDate;
 		this.delYn = delYn;
+		this.categoryName = categoryName;
+		this.nick = nick;
 	}
+	
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", categoryNo=" + categoryNo
-				+ ", writerNo=" + writerNo + ", hit=" + hit + ", createDate=" + createDate + ", delYn=" + delYn + "]";
+				+ ", writerNo=" + writerNo + ", hit=" + hit + ", createDate=" + createDate + ", delYn=" + delYn
+				+ ", categoryName=" + categoryName + ", nick=" + nick + "]";
 	}
 	public String getNo() {
 		return no;
@@ -81,8 +89,19 @@ public class BoardVo {
 	public void setDelYn(String delYn) {
 		this.delYn = delYn;
 	}
-	
-	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
 	
 	
 	

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.app.board.service.BoardService;
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.member.vo.MemberVo;
 
 @WebServlet("/board/detail")
 public class BoardDetailController extends HttpServlet{
@@ -20,13 +21,18 @@ public class BoardDetailController extends HttpServlet{
 		try {
 			//데꺼
 			String no = req.getParameter("no");
+			String writerNo = req.getParameter("writerNo");
 			if(no==null||no.length()==0) {
 				throw new Exception ("조회할 게시글 번호를 입력하세요");
 			}
 			
 			//복작
 			BoardService bs = new BoardService();
-			BoardVo vo =bs.getBoardByNo(no);
+			MemberVo loginMemberVo = (MemberVo)req.getSession().getAttribute("loginMemberVo");
+			
+			boolean isSelf = loginMemberVo ==null? false: loginMemberVo.getNo().equals(writerNo);
+			
+			BoardVo vo =bs.getBoardByNo(no, isSelf);
 			//무조건보내면안됨. vo가 null인 경우 생각
 			if(vo==null) {
 				throw new Exception("게시글 조회 실패....");

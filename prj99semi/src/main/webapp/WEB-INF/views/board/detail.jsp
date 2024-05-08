@@ -20,12 +20,16 @@
         <main>
         	<h1 align = "center">게시글 상세 조회</h1>
         	<div>제목 : ${requestScope.vo.title }</div>
-        	<div>작성자 : ${requestScope.vo.writerNo}</div>
-        	<div>내용 : ${requestScope.vo.content}</div>
+        	<div>작성자 : ${requestScope.vo.nick}</div>
         	<div>조회수 : ${requestScope.vo.hit}</div>
+        	<div>카테고리이름: ${requestScope.vo.categoryName}</div>
         	<div>작성일시 : ${requestScope.vo.createDate}</div>
-        	<div>카테고리번호: ${requestScope.vo.categoryNo}</div>
+        	<div>내용 : ${requestScope.vo.content}</div>
         	
+        	<c:if test="${requestScope.vo.writerNo == sessionScope.loginMemberVo.no}">
+	        	<button onclick = "location.href = '/app/board/edit?no=${vo.no}'">수정</button>
+	        	<button onclick = "location.href = '/app/board/delete?no=${vo.no}'">삭제</button>
+        	</c:if>
         	
         </main>
 

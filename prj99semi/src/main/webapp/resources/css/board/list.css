@@ -1,0 +1,14 @@
+main{
+    display: flex;
+    justify-content: content;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+main table> tbody >tr:hover{
+    background-color: rgb(103, 175, 124);
+    color: white;
+    cursor: pointer;
+}

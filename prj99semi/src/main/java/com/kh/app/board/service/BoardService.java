@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kh.app.board.dao.BoardDao;
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.db.JDBCTemplate;
 import com.kh.app.db.JDBCTemplate;
 import static com.kh.app.db.JDBCTemplate.*;
@@ -51,18 +52,97 @@ public class BoardService {
 	}
 
 
-	public BoardVo getBoardByNo(String no) throws Exception {
+	public BoardVo getBoardByNo(String no,boolean isSelf) throws Exception {
 		//비즈니스로직
 		
 		//dao호출
-		Connection conn = getConnection();
-		BoardVo vo = dao.getBoardByNo(conn,no);
-		close(conn);
+		Connection conn =null;//try-finally로 감싸면 변수인식못함.필드로 빼기
+		BoardVo vo = null;
 		
+		try {
+			conn = getConnection();
+
+			int result = 1;
+			if(!isSelf) {
+				result = dao.increaseHit(conn,no);
+			}
+			vo = dao.getBoardByNo(conn,no);
+
+			if(result == 1 && vo!=null) {
+				commit(conn);
+			}else {//해당 게시글이 없거나 잘못된 조회
+				rollback(conn);
+				throw new Exception ("[ERROR-B001]게시글 조회수 증가 실패....");
+			}
+		}
+		finally {
+			close(conn);//커넥션 닫는 작업은 무조건 시행되도록
+		}
 		return vo;
 	
-	
 	}
+
+
+	public List<CategoryVo> getCategoryVoList() throws Exception {
+
+		Connection conn = getConnection();
+		List<CategoryVo>categoryVoList = dao.getCategoryVoList(conn);
+		close(conn);
+		return categoryVoList;
+		
+		
+		
+	}
+
+
+	public int edit(BoardVo vo) throws Exception {
+		//비즈니스로직
+		if(vo.getTitle().contains("18")){
+			throw new Exception("욕ㄴㄴ");
+		}
+		if(vo.getContent().contains("18")) {
+			throw new Exception("dfs");
+			}
+		//dao호출	
+	
+		Connection conn = getConnection();
+		int result = dao.edit(conn,vo);
+		
+		if(result ==1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
+	public int delete(BoardVo boardVo) throws Exception {
+		//비즈니스로직=>할거없음 스킵
+		//dao호출
+		Connection conn = getConnection();
+		int result = dao.delete(conn,boardVo);
+		
+		if(result==1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+			throw new Exception("게시글 삭제 실패...");
+		}
+		close(conn);
+		return result;
+		
+	}
+
+//카테고리 목록 조회
+
+
+	
+	
+
+
+	
 
 	
 

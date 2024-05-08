@@ -12,7 +12,7 @@
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 
-<link rel="stylesheet" href="/app/resources/css/board.css">
+<link rel="stylesheet" href="/app/resources/css/board/list.css">
 
 </head>
 <body>
@@ -38,14 +38,26 @@
 				<tbody>
 					<c:forEach items="${voList}" var="vo">
 						<tr>
-							<td>${vo.title}</td>
-							<td>${vo.writerNo}</td>
-							<td>${vo.categoryNo}</td>
+							<td><a href ="/app/board/detail?no=${vo.no}&writerNo=${vo.writerNo}">${vo.title}</a></td>
+							<td>${vo.nick}</td>
+							<td>${vo.categoryName}</td>
 							<td>${vo.hit}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			
+			<%--<c:if test="${sessionScope.loginMemberVo ne null}"> --%>
+			<%-- <c:if test="${not empty sessionScope.loginMemberVo}">--%>
+			<c:if test="${sessionScope.loginMemberVo != null}">
+				<div>
+				<button onclick="location.href ='/app/board/insert'">게시글 작성</button>
+				</div>
+			</c:if>
+
+
+
 
 		</main>
 
