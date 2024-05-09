@@ -23,48 +23,7 @@
         <main>
             <h1 align="center">환영합니다 ~ ^^</h1>
 
-            <div class="x">1</div>
-            <div class="x">2</div>
-            <div class="x">3</div>
-            <div class="x">4</div>
-            <div class="x">4</div>
-            <div class="x">4</div>
-            <div class="x">4</div>
-            <div class="x">4</div>
-            <div class="x">4</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">6</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">5</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
-            <div class="x">6</div>
+           
  
             
         </main>

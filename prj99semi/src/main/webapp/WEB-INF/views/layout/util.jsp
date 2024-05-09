@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="/app/resources/css/home.css">
 <script src="/app/resources/js/home.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
 	<c:if test="${not empty alertMsg}">
