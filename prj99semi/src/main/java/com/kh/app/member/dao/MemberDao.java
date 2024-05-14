@@ -15,13 +15,14 @@ public class MemberDao {
 		
 	}
 
-	public int join(MemberVo vo, Connection conn) throws Exception {
+	public int join( Connection conn ,MemberVo vo) throws Exception {
 //SQL
-		String sql = "INSERT INTO MEMBER(NO,ID,PWD,NICK)VALUES(SEQ_MEMBER.NEXTVAL,?,?,?)";
+		String sql = "INSERT INTO MEMBER(NO,ID,PWD,NICK,PROFILE) VALUES(SEQ_MEMBER.NEXTVAL,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,vo.getId() );
+		pstmt.setString(1,vo.getId());
 		pstmt.setString(2, vo.getPwd());
 		pstmt.setString(3, vo.getNick());
+		pstmt.setString(4, vo.getProfile());
 		int result = pstmt.executeUpdate();
 		close(pstmt);
 		return result;

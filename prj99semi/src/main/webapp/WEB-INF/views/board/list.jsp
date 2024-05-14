@@ -29,6 +29,8 @@
 			<table border="1">
 				<thead>
 					<tr>
+
+						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>카테고리</th>
@@ -38,7 +40,10 @@
 				<tbody>
 					<c:forEach items="${voList}" var="vo">
 						<tr>
-							<td><a href ="/app/board/detail?no=${vo.no}&writerNo=${vo.writerNo}">${vo.title}</a></td>
+							<td>${vo.no}</td>
+							<%--글번호 --%>
+							<td><a
+								href="/app/board/detail?no=${vo.no}&writerNo=${vo.writerNo}">${vo.title}</a></td>
 							<td>${vo.nick}</td>
 							<td>${vo.categoryName}</td>
 							<td>${vo.hit}</td>
@@ -46,16 +51,39 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			
+
+
 			<%--<c:if test="${sessionScope.loginMemberVo ne null}"> --%>
 			<%-- <c:if test="${not empty sessionScope.loginMemberVo}">--%>
 			<c:if test="${sessionScope.loginMemberVo != null}">
 				<div>
-				<button onclick="location.href ='/app/board/insert'">게시글 작성</button>
+					<button onclick="location.href ='/app/board/insert'">게시글
+						작성</button>
 				</div>
 			</c:if>
 
+			<div id="page-area">
+				<c:if test="${pvo.currentPage >1}">
+					<a href="/app/board/list?pno=${pvo.currentPage-1}">이전</a>
+				</c:if>
+
+				<c:forEach begin="${pvo.startPage}" end="${pvo.endPage}" var="x">
+
+					<c:if test="${pvo.currentPage == x }">
+						<strong>${x}</strong>
+					</c:if>
+
+					<c:if test="${pvo.currentPage != x}">
+						<a href="/app/board/list?pno=${x}">${x}</a>
+					</c:if>
+
+				</c:forEach>
+
+				<c:if test="${pvo.currentPage<pvo.maxPage}">
+					<a href="/app/board/list?pno=${pvo.currentPage+1}">다음</a>
+				</c:if>
+
+			</div>
 
 
 

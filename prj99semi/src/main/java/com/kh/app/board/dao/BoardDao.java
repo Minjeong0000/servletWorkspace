@@ -10,6 +10,7 @@ import java.util.List;
 import static com.kh.app.db.JDBCTemplate.*;
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.board.vo.CategoryVo;
+import com.kh.app.board.vo.PageVo;
 
 public class BoardDao {
 
@@ -30,14 +31,18 @@ public class BoardDao {
 		return result;
 	}
 
-	public List<BoardVo> selectBoardList(Connection conn) throws Exception {
+	
+	//게시글 목록 조회
+	public List<BoardVo> selectBoardList(Connection conn,PageVo pvo) throws Exception {
 
 		//sql
 		
 		
-		String sql ="SELECT B.NO ,B.TITLE ,B.CONTENT ,B.CATEGORY_NO ,C.NAME ,B.WRITER_NO ,M.NICK ,B.HIT ,B.CREATE_DATE FROM BOARD B JOIN MEMBER M ON B.WRITER_NO = M.NO JOIN CATEGORY C ON B.CATEGORY_NO = C.NO AND B.DEL_YN = 'N' ORDER BY B.NO DESC";
+		String sql ="SELECT * FROM ( SELECT ROWNUM AS RNUM, T.* FROM ( SELECT * FROM BOARD  B JOIN CATEGORY C ON B.CATEGORY_NO =C.NO JOIN MEMBER M ON B.WRITER_NO = M.NO WHERE B.DEL_YN ='N' ORDER BY B.NO DESC )T )WHERE RNUM BETWEEN ? AND ?";
 		
 		PreparedStatement pstmt= conn.prepareStatement(sql);
+		pstmt.setInt(1, pvo.getStartNum());//가져온 값이 int이므로 setString이 아니라 setInt로
+		pstmt.setInt(2, pvo.getEndNum());
 		ResultSet rs =pstmt.executeQuery();
 		List <BoardVo>voList = new ArrayList<>();
 		while(rs.next()) {
@@ -69,15 +74,16 @@ public class BoardDao {
 		return voList;
 	}
 
-	BoardVo vo = null;
 	
+
 	public BoardVo getBoardByNo(Connection conn, String no) throws Exception {
-		//sql
-		String sql = "SELECT B.NO ,B.TITLE ,B.CONTENT ,B.CATEGORY_NO ,C.NAME ,B.WRITER_NO ,M.NICK ,B.HIT ,B.CREATE_DATE FROM BOARD B JOIN MEMBER M ON B.WRITER_NO = M.NO JOIN CATEGORY C ON B.CATEGORY_NO = C.NO WHERE B.NO = ? AND B.DEL_YN = 'N'";
+		//SQL
+		String sql = "SELECT B.NO , B.TITLE , B.CONTENT , B.CATEGORY_NO , C.NAME , B.WRITER_NO , M.NICK , B.HIT , B.CREATE_DATE FROM BOARD B JOIN MEMBER M ON B.WRITER_NO = M.NO JOIN CATEGORY C ON B.CATEGORY_NO = C.NO WHERE B.NO = ? AND B.DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, no);
 		ResultSet rs = pstmt.executeQuery();
 		
+		BoardVo vo = null;
 		if(rs.next()) {
 //			String no = rs.getString("NO");
 			String title = rs.getString("TITLE");
@@ -89,9 +95,7 @@ public class BoardDao {
 			String hit = rs.getString("HIT");
 			String createDate = rs.getString("CREATE_DATE");
 			
-			
 			vo = new BoardVo();
-			
 			vo.setNo(no);
 			vo.setTitle(title);
 			vo.setContent(content);
@@ -101,12 +105,7 @@ public class BoardDao {
 			vo.setCreateDate(createDate);
 			vo.setCategoryName(categoryName);
 			vo.setNick(nick);
-			//이제 jsp도 수정
 		}
-		
-		
-		
-		
 		close(rs);
 		close(pstmt);
 		return vo;
@@ -176,10 +175,25 @@ public class BoardDao {
 		int result = pstmt.executeUpdate();
 		close(pstmt);
 		return result;
+
 		
 		
 		
-		
+	}
+
+	public int getBoardCnt(Connection conn) throws Exception {
+		//sql
+		String sql = "SELECT COUNT(NO) FROM BOARD WHERE DEL_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		int cnt = 0;
+		if(rs.next()) {
+			cnt = rs.getInt(1);
+		}
+		close(rs);
+		close(pstmt);
+		return cnt;
+	
 	}
 
 }//class

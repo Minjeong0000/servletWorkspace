@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.app.board.dao.BoardDao;
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.board.vo.CategoryVo;
+import com.kh.app.board.vo.PageVo;
 import com.kh.app.db.JDBCTemplate;
 import com.kh.app.db.JDBCTemplate;
 import static com.kh.app.db.JDBCTemplate.*;
@@ -42,11 +43,11 @@ public class BoardService {
 
 
 	//게시글목록
-	public List<BoardVo> selectBoardList()throws Exception{
+	public List<BoardVo> selectBoardList(PageVo pvo)throws Exception{
 
 		//dao 호출
 		Connection conn = getConnection();
-		List<BoardVo>voList = dao.selectBoardList(conn);
+		List<BoardVo>voList = dao.selectBoardList(conn, pvo);
 		close(conn);
 		return voList;
 	}
@@ -132,6 +133,19 @@ public class BoardService {
 		}
 		close(conn);
 		return result;
+		
+	}
+
+
+	public int getBoardCnt() throws Exception{
+
+		//biz
+		
+		//sql
+		Connection conn = getConnection();
+		int cnt = dao.getBoardCnt(conn);
+		close(conn);
+		return cnt;
 		
 	}
 
