@@ -14,6 +14,7 @@ public class BoardVo {
 	private String nick;
 	
 	
+	
 	public BoardVo() {
 		super();
 		// TODO Auto-generated constructor stub

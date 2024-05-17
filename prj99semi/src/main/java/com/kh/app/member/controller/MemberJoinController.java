@@ -43,24 +43,28 @@ public class MemberJoinController extends HttpServlet{
 			String nick = req.getParameter("nick");
 			Part profile =req.getPart("profile");
 			
-			//사진파일을 서버에 저장하기
-			String originFileName = profile.getSubmittedFileName();
-	         InputStream is = profile.getInputStream();
-	         
-	         String path = "D:\\dev\\servletWorkspace\\prj99semi\\src\\main\\webapp\\resources\\upload\\";
-	         String random = UUID.randomUUID().toString();
-	         String ext = originFileName.substring(originFileName.lastIndexOf("."));
-	         String changeName = System.currentTimeMillis() + "_" + random + ext;
-	         FileOutputStream fos = new FileOutputStream(path + changeName);
-	         
-	         byte[] buf = new byte[1024];
-	         int size = 0;
-	         while( (size=is.read(buf)) != -1 ) {
-	            fos.write(buf , 0, size);
-	         }
-	         
-	         is.close();
-	         fos.close();
+			String changeName ="";
+			if(profile.getSize() >0 ) {//profile!=null로 검사하면 안됨 파일첨부안해도 profile객체가 만들어지기 때문
+				//사진파일을 서버에 저장하기
+				String originFileName = profile.getSubmittedFileName();
+				InputStream is = profile.getInputStream();
+				
+				String path = "D:\\dev\\servletWorkspace\\prj99semi\\src\\main\\webapp\\resources\\upload\\";
+				String random = UUID.randomUUID().toString();
+				String ext = originFileName.substring(originFileName.lastIndexOf("."));
+				changeName = System.currentTimeMillis() + "_" + random + ext;
+				FileOutputStream fos = new FileOutputStream(path + changeName);
+				
+				byte[] buf = new byte[1024];
+				int size = 0;
+				while( (size=is.read(buf)) != -1 ) {
+					fos.write(buf , 0, size);
+				}
+				is.close();
+				fos.close();
+			}
+			
+			
 	         
 			MemberVo vo = new MemberVo();
 			vo.setId(id);

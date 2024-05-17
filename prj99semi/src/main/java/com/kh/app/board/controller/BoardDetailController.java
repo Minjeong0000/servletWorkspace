@@ -1,6 +1,7 @@
 package com.kh.app.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.app.board.service.BoardService;
+import com.kh.app.board.vo.AttachmentVo;
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.member.vo.MemberVo;
 
@@ -33,6 +35,9 @@ public class BoardDetailController extends HttpServlet{
 			boolean isSelf = loginMemberVo ==null? false: loginMemberVo.getNo().equals(writerNo);
 			
 			BoardVo vo =bs.getBoardByNo(no, isSelf);
+			//게시글번호전달 위에서 데이터꺼내온것(no) 사용해서 
+			List<AttachmentVo> attVoList = bs.getAttachment(no);
+			
 			//무조건보내면안됨. vo가 null인 경우 생각
 			if(vo==null) {
 				throw new Exception("게시글 조회 실패....");
@@ -41,6 +46,7 @@ public class BoardDetailController extends HttpServlet{
 			
 			//결과
 			req.setAttribute("vo", vo);
+			req.setAttribute("attVoList", attVoList);
 			req.getRequestDispatcher("/WEB-INF/views/board/detail.jsp").forward(req, resp);
 
 		}catch(Exception e ) {

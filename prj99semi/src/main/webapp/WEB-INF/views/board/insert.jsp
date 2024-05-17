@@ -24,7 +24,7 @@
 		<main>
 			<h1>게시글 작성</h1>
 
-			<form action="/app/board/insert" method="post">
+			<form action="/app/board/insert" method="post" enctype ="multipart/form-data">
 				<input type="text" name="title" placeholder="제목을 입력하세요"> 
 				<select name="category">
 					<c:forEach var = "cvo" items ="${categoryVoList}">
@@ -35,7 +35,7 @@
 				<br>
 				<textarea name="content" placeholder="내용을 입력하세요"></textarea>
 				<br>
-				<input type="file" name="f"> 
+				<input type="file" name="f" multiple> 
 				<input type="submit" value="작성하기">
 			</form>
 		</main>

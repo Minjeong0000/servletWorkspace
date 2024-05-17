@@ -30,7 +30,7 @@ public class MemberDao {
 
 	public MemberVo login(Connection conn, MemberVo vo) throws Exception {
 
-		String sql = "SELECT * FROM MEMBER WHERE ID =? AND PWD = ? AND DEL_YN ='N'";
+		String sql = "SELECT * FROM MEMBER WHERE ID = ? AND PWD = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt= conn.prepareStatement(sql);
 		pstmt.setString(1,vo.getId());
 		pstmt.setString(2,vo.getPwd());
@@ -46,6 +46,7 @@ public class MemberDao {
 	         String delYn = rs.getString("DEL_YN");
 	         String enrollDate = rs.getString("ENROLL_DATE");
 	         String modifyDate = rs.getString("MODIFY_DATE");
+	         String profile = rs.getString("PROFILE");
 	         
 	         loginMemberVo = new MemberVo();
 	         loginMemberVo.setNo(no);
@@ -55,6 +56,7 @@ public class MemberDao {
 	         loginMemberVo.setDelYn(delYn);
 	         loginMemberVo.setEnrollDate(enrollDate);
 	         loginMemberVo.setModifyDate(modifyDate);
+	         loginMemberVo.setProfile(profile);
 	      }
 	      
 	      close(rs);

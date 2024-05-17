@@ -26,6 +26,11 @@
         	<div>작성일시 : ${requestScope.vo.createDate}</div>
         	<div>내용 : ${requestScope.vo.content}</div>
         	
+        	<c:forEach var ="x" items ="${attVoList}">
+			<img width="300px" height="auto" alt="${x.originName}" src="/app/resources/upload/${x.changeName}">        	
+        	</c:forEach>
+        	
+        	
         	<c:if test="${requestScope.vo.writerNo == sessionScope.loginMemberVo.no}">
 	        	<button onclick = "location.href = '/app/board/edit?no=${vo.no}'">수정</button>
 	        	<button onclick = "location.href = '/app/board/delete?no=${vo.no}'">삭제</button>
