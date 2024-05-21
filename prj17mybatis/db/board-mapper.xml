@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+
+	<insert id="write">
+	INSERT INTO BOARD_TEMP(TITLE, CONTENT)
+		VALUES(#{title},#{content})
+	</insert>
+	
+	<select id="getBoardList" resultType="com.kh.app.board.vo.BoardVo">
+	
+			SELECT
+		    TITLE
+		    ,CONTENT
+			FROM BOARD_TEMP
+
+	
+	</select>
+
+
+</mapper>
