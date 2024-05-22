@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	<insert id="write">
+	
+INSERT INTO BOARD_TEMP
+(
+    TITLE
+    , CONTENT
+    , WRITER
+)
+VALUES
+(
+    #{title} 
+    , #{content}
+    , #{writer}
+    
+)
+
+	</insert>
+
+<!-- resultType은 select문에만 추가. 
+결과가 resultSet인 경우에 자바객체로 변경하고 객체가 어디에 속하는지 알려줘야함 (매핑)-->
+	<select id="getBoardList" resultType="com.kh.app.board.vo.BoardVo">
+	SELECT
+    TITLE
+    , CONTENT
+    , WRITER
+	FROM BOARD_TEMP
+	<if test="type == 'title'">
+		WHERE TITLE LIKE '%${value}%'
+	</if>
+	<if test="type == 'content'">
+		WHERE CONTENT LIKE '%${value}%'
+	</if>
+	<if test="type == 'writer'">
+		WHERE WRITER LIKE '%${value}%'
+	</if>
+
+	</select>
+	<select id="searchBoardByTitle" resultType="com.kh.app.board.vo.BoardVo">
+	SELECT 
+    TITLE
+    , CONTENT
+    , WRITER
+FROM BOARD_TEMP
+WHERE TITLE LIKE '%${value}%'
+
+	</select>
+	<select id="searchBoardByContent" resultType="com.kh.app.board.vo.BoardVo">
+	SELECT 
+    TITLE
+    , CONTENT
+    , WRITER
+FROM BOARD_TEMP
+WHERE CONTENT LIKE '%${value}%'
+
+	</select>
+	<select id="searchBoardByWriter" resultType="com.kh.app.board.vo.BoardVo">
+	SELECT 
+    TITLE
+    , CONTENT
+    , WRITER
+FROM BOARD_TEMP
+WHERE WRITER LIKE '%W%'
+	</select>
+
+
+</mapper>
