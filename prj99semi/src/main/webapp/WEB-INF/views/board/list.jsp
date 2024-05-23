@@ -13,7 +13,7 @@
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 
 <link rel="stylesheet" href="/app/resources/css/board/list.css">
-
+<script defer src = "/app/resources/js/board/list.js"></script>
 </head>
 <body>
 
@@ -35,6 +35,10 @@
 						<th>작성자</th>
 						<th>카테고리</th>
 						<th>조회수</th>
+						
+						<c:if test="${sessionScope.loginAdminVo != null }">
+						<th><button onclick="deleteCheckedBoard();">✔</button></th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,6 +51,9 @@
 							<td>${vo.nick}</td>
 							<td>${vo.categoryName}</td>
 							<td>${vo.hit}</td>
+							<c:if test="${sessionScope.loginAdminVo != null }">
+							<td><input type = "checkbox" value ="${vo.no}"></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
