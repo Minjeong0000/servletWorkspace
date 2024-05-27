@@ -8,6 +8,7 @@
 <title>KH홈페이지</title>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp" %>
+<script defer src="/app/resources/js/board/detail.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,30 @@
 	        	<button onclick = "location.href = '/app/board/edit?no=${vo.no}'">수정</button>
 	        	<button onclick = "location.href = '/app/board/delete?no=${vo.no}'">삭제</button>
         	</c:if>
+        	<!-- ajax로 댓글기능 -->
+        	<button onclick ="loadReplyList(${vo.no});">댓글 불러오기</button>
+        	
+        	<div id ="replyArea">
+        		<table>
+        			<thead>
+        				<tr>
+        					<th>번호</th>
+        					<th>내용</th>
+        					<th>작성자</th>
+        					<th>작성일시</th>
+        				</tr>
+        			</thead>
+        			<tbody>
+        				<tr>
+        					<td></td>
+        					<td></td>
+        					<td></td>
+        					<td></td>
+        				</tr>
+        			</tbody>
+        		</table>
+        	</div>
+        	
         	
         </main>
 

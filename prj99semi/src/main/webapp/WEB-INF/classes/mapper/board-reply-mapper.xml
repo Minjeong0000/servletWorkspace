@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardReplyMapper">
+
+	<insert id = "writeReply">
+		INSERT INTO BOARD_REPLY(
+		    NO
+		    ,CONTENT
+		    ,REF_NO
+		    ,WRITER_NO
+		    ,DEL_YN
+	    )
+		VALUES(
+		    SEQ_REPLY.NEXTVAL
+		    ,#{content}
+		    ,#{refNo}
+		    ,#{writerNo}
+	    )
+
+	</insert>
+
+	<select id="selectReplyAllByNo" resultType = "com.kh.app.board.vo.BoardReplyVo">
+		SELECT 
+		    R.NO
+		    ,R.CONTENT
+		    ,R.REF_NO
+		    ,R.WRITER_NO
+		    ,R.CREATE_DATE
+		    ,R.DEL_YN
+		    ,M.NICK AS WRITER_NICK
+		FROM BOARD_REPLY R
+		JOIN MEMBER M ON R.WRITER_NO = M.NO
+		WHERE R.REF_NO = #{refNo}
+		AND  R.DEL_YN = 'N'
+		ORDER BY R.NO DESC
+	</select>
+
+
+
+</mapper>

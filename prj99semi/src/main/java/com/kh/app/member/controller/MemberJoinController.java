@@ -88,8 +88,7 @@ public class MemberJoinController extends HttpServlet{
 			System.out.println("[ERROR-M001]"+e.getMessage());
 			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("//");
-		}
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);		}
 		
 		
 	}
