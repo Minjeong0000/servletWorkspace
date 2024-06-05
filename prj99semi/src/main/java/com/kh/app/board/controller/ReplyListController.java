@@ -26,6 +26,8 @@ public class ReplyListController extends HttpServlet{
 			Gson gson = new Gson();
 			String str = gson.toJson(replyVoList);//객체를Json형식의 문자열로 자동변환하는 메소드
 			
+			
+			resp.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = resp.getWriter();
 			System.out.println("str : " + str);
 			out.write(str);

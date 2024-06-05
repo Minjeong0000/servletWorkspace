@@ -33,3 +33,28 @@ function loadReplyList(refNo){
 	});
 	
 }
+
+
+function writeReply(refNo){
+	
+	const replyValue = document.querySelector("input[name=reply-content]").value;
+	document.querySelector("input[name=reply-content]").value = "";//댓글작성하면 작성칸 비우기
+	
+	$.ajax({
+		url:"http://127.0.0.1:8888/app/board/reply/write",
+		type:"POST",
+		data:{
+			"refNo" : refNo,
+			"content" : replyValue,
+		},
+		success : function(x){
+			console.log(x);
+			loadReplyList(refNo);
+		},
+		fail: function(x){
+			console.log(x);
+		},
+		
+	})
+	
+}

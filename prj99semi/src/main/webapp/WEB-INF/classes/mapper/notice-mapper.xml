@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeMapper">
+
+	<insert id="write">
+	INSERT INTO NOTICE 
+(
+    NO
+    ,TITLE
+    ,CONTENT
+    ,WRITER_NO
+) 
+VALUES
+(
+    SEQ_NOTICE.NEXTVAL
+    ,#{title}
+    ,#{content}
+    ,#{writerNo}
+)
+	</insert>
+	
+	
+	<select id="getNoticeList" resultType="com.kh.app.notice.vo.NoticeVo">
+	SELECT
+	    N.NO
+	    ,N.TITLE
+	    ,N.CONTENT
+	    ,N.WRITER_NO
+	    ,N.HIT
+	    ,N.CREATE_DATE
+	    ,N.DEL_YN
+	    ,A.NICK AS WRITER_NICK
+	FROM NOTICE N
+		JOIN ADMIN A ON N.WRITER_NO = A.NO
+		WHERE N.DEL_YN = 'N'
+		ORDER BY NO DESC
+		
+
+
+	
+	</select>
+	
+	
+	<select id="getNotice" resultType="com.kh.app.notice.vo.NoticeVo">
+	
+	SELECT
+    N.NO
+    ,N.TITLE
+    ,N.CONTENT
+    ,N.WRITER_NO
+    ,N.HIT
+    ,N.CREATE_DATE
+    ,N.DEL_YN
+    ,A.NICK AS WRITER_NICK
+		FROM NOTICE N
+		JOIN ADMIN A ON N.WRITER_NO = A.NO
+		WHERE N.NO = #{no} 
+		AND N.DEL_YN = 'N'
+		
+	</select>
+	
+	<!-- resultType="int": 쿼리 결과를 Java의 int 타입으로 매핑 -->
+	<select id = "getCnt" resultType="int">
+	
+	SELECT 
+		COUNT(NO)
+	FROM NOTICE
+	WHERE DEL_YN = 'N'
+	
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

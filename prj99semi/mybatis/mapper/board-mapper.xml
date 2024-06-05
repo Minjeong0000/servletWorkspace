@@ -36,26 +36,25 @@
 
 </insert>
 
-<insert id="insertBoardAttachMent">
-INSERT ALL
-    <foreach collection="list" item ="vo" separator=" ">
-    INTO BOARD_ATTACHMENT
-	(NO
-	,REF_NO
-	,ORIGIN_NAME
-	,CHANGE_NAME)
-	
-    VALUES
-    (
-    	(SELECT FN_GET_BOARD_ATTACHMENT_SEQ_NEXTVAL FROM DUAL)
-    	,SEQ_BOARD.CURRVAL
-    	,#{vo.originName}
-    	,#{vo.changeName}
-    )
-    </foreach>
-SELECT * FROM DUAL
-
-</insert>
-
+	<insert id="insertBoardAttachment">
+		INSERT ALL
+		<foreach collection="list" item="vo" separator=" ">
+		 INTO BOARD_ATTACHMENT
+		 (
+			 NO
+			 , REF_NO
+			 , ORIGIN_NAME
+			 , CHANGE_NAME
+		 ) 
+		 VALUES 
+		 (
+			 (SELECT FN_GET_BOARD_ATTACHMENT_SEQ_NEXTVAL FROM DUAL)
+			 , SEQ_BOARD.CURRVAL
+			 , #{vo.originName}
+			 , #{vo.changeName}
+		 )
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
 
 </mapper>

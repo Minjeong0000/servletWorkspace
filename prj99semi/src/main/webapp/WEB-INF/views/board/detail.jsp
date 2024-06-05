@@ -36,8 +36,22 @@
 	        	<button onclick = "location.href = '/app/board/edit?no=${vo.no}'">수정</button>
 	        	<button onclick = "location.href = '/app/board/delete?no=${vo.no}'">삭제</button>
         	</c:if>
+        	
+        	<br>
         	<!-- ajax로 댓글기능 -->
         	<button onclick ="loadReplyList(${vo.no});">댓글 불러오기</button>
+        	
+        	<c:if test="${sessionScope.loginMemberVo != null}">
+        	<input type="text" name = reply-content placeholder="댓글을입력하세요">
+        	<button onclick="writeReply(${vo.no});">작성</button>
+        	</c:if>
+        	
+        	<c:if test="${sessionScope.loginMemberVo == null}">
+        		<span>로그인 후 댓글 작성 가능합니다.</span>
+        	
+        	</c:if>
+        	
+        	
         	
         	<div id ="replyArea">
         		<table>
